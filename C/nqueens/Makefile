@@ -19,7 +19,7 @@
 IDIR = ../include
 SDIR = ../solver
 CC = gcc
-OPT = -O3 -g
+OPT = -O3 -g -static
 CFLAGS = -I$(IDIR) -Wall
 PDEPS = $(IDIR)/problem.h
 SDEPS = $(IDIR)/solver.h
