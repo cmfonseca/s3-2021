@@ -21,7 +21,7 @@ SDIR = ../solver
 CC = gcc
 OPT = -O3
 CFLAGS = -I$(IDIR)
-PDEPS = $(IDIR)/problem.h
+PDEPS = $(IDIR)/problem.h $(IDIR)/s3problem.h
 SDEPS = $(IDIR)/solver.h
 LIBS = -lgsl -lgslcblas -lm
 
@@ -41,11 +41,14 @@ problem3-shd: problem3-shd.o problem3.o
 problem3-sga: problem3-sga.o problem3.o
 	$(CC) -o $@ $(CFLAGS) $(OPT) $^ $(SDIR)/sga.o $(LIBS)
 
+problem3-ils: problem3-ils.o problem3.o
+	$(CC) -o $@ $(CFLAGS) $(OPT) $^ $(SDIR)/ils.o $(LIBS)
+
 %.o: %.c
 	$(CC) -c -o $@ $(CFLAGS) $(OPT) $<
 
-problem3.o: problem3.c problem3.h $(PDEPS)
-problem3-shd.o: problem3-shd.c  $(PDEPS) $(IDIR)/shd.h $(SDEPS)
-problem3-sga.o: problem3-sga.c  $(PDEPS) $(IDIR)/sga.h $(SDEPS)
-problem3-ils.o: problem3-ils.c  $(PDEPS) $(IDIR)/ils.h $(SDEPS)
+problem3.o: problem3.c $(PDEPS)
+problem3-shd.o: problem3-shd.c $(PDEPS) $(IDIR)/shd.h $(SDEPS)
+problem3-sga.o: problem3-sga.c $(PDEPS) $(IDIR)/sga.h $(SDEPS)
+problem3-ils.o: problem3-ils.c $(PDEPS) $(IDIR)/ils.h $(SDEPS)
 

@@ -29,7 +29,7 @@ struct solverState {
     struct problem *p;
     struct solution **parent, **offspring, *best;
     struct move *v;
-    struct segment *ps;
+/*    struct segment *ps;*/
     double *cost, *fitness, mincost, **ranking_aux;
     int popsize, i;
     double Px, Pm, SP;
@@ -176,7 +176,7 @@ struct solverState *newSolver(struct problem *p, int popsize) {
     for (i = 0; i <= popsize; i++)
         ss->offspring[i] = allocSolution(p);
     ss->v = allocMove(p);
-    ss->ps = allocSegment(p);
+/*    ss->ps = allocSegment(p);*/
     ss->ranking_aux = malloc(popsize * sizeof (double *));
     ss->fitness = malloc(popsize * sizeof (double));
     /* state initialisation */
@@ -202,7 +202,7 @@ void freeSolver(struct solverState *ss) {
     int i;
     free(ss->ranking_aux);
     free(ss->fitness);
-    freeSegment(ss->ps);
+/*    freeSegment(ss->ps);*/
     freeMove(ss->v);
     for (i = 0; i <= ss->popsize; i++) {
         freeSolution(ss->offspring[i]);

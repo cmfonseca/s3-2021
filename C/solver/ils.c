@@ -68,7 +68,7 @@ struct solverState *nextSolverState(struct solverState *ss) {
         }
         copySolution(ss->s1, ss->s0);
         /* printf("Kick!\n"); */
-#if 1
+#if 0
         randomNeighbour(ss->s1, ss->kick_steps);
 #else
         for (int i = 0; i < ss->kick_steps; i++)
