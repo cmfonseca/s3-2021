@@ -1,21 +1,26 @@
-# Add and Test a New Problem
+# How to test your problem
 
-- Create a source file in the `problem_init` folder, implementing the function `struct problem * initProblem(int argc, char ** argv);` from `problem_init.h` (see, in that folder, the examples for other problems). For example, create the file `fakeproblem_init.c`
+- Edit the file mk/problemX.mk (where X=3,4) to indicate which API functions you
+have implemented:
+    - Check that all variables are correctly set (the defaults should just
+    work):
+        - `PROBPATH`: path to the source code of your problem
+        - `PROBOBJ`: name of the `.o` file
+        - `PROBINIT`: path to the problem init file (e.g.
+          `problem_init/default_init.c`)
+        - Set all the other variables to `1` or `0` to indicate whether the
+          function with the same name should be tested or not, respectively.
 
-- Create a file in the `mk`folder with the name of the problem, e.g., `fakeproblem.mk`
-	- Set all variables (see the examples in that folder)
-		- `PROBPATH`: path to the source code of the new problem
- 		- `PROBOBJ`: name of the `.o` file
-		- `PROBINIT`: path to the problem init file (e.g. `problem_init/fakeproblem_init.c`)
-	- Set all the other variables to `1` or `0` to indicate whether the function with the same name should be tested or not, respectively.
-
-- Run the Makefile indicating the problem name (must be the name given to the `.mk` file), e.g.: 
+- Run the Makefile indicating the problem name (must be the name given in the
+`.mk` file), e.g.: 
 ```
-make PROBNAME=fakeproblem
+make PROBNAME=problemX
 ```
+This will create an executable file named `test-problemX`.
 
-This will create an executable file named `test-fakeproblem`.
-- Run the tests (and provide any additional arguments required, as defined in `initProblem()`):
+- Run the tests (and provide any additional arguments required, as defined in
+`initProblem()`):
 ```
 `./test-fakeproblem
 ```
+
