@@ -111,6 +111,10 @@ struct solution *randomNeighbour(struct solution *s, int d);
  */
 double *getObjectiveVector(double *objv, struct solution *s);
 
+
+/* temporary empty */
+double getObjectiveValue(struct solution *s);
+
 /* 
  * Number of direct neighbours of a given solution.
  */
